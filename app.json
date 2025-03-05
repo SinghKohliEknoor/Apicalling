@@ -4,6 +4,7 @@
     "slug": "Apicalling",
     "version": "1.0.0",
     "orientation": "portrait",
+    "plugin":[["expo-router"]],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
