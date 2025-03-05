@@ -7,7 +7,27 @@ import months from "../constants/months";
 export default function ApiPage() {
   const [month, setMonth] = useState<number | null>(null);
   const [day, setDay] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
+  const handleDayChange = (value: string) => {
+    const dayNumber = parseInt(value);
+    const monthNumber = month ? month : 0;
+    if(monthNumber == 2){
+      if (dayNumber >= 1 && dayNumber <= 29) {
+        setDay(value);
+        setMessage("");
+      } else {
+        setDay("");
+        setMessage("Day must be between 1 and 29");
+      }
+    } else if (dayNumber >= 1 && dayNumber <= 31) {
+      setDay(value);
+      setMessage("");
+    } else {
+      setDay("");
+      setMessage("Day must be between 1 and 31");
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Month & Day</Text>
@@ -27,9 +47,9 @@ export default function ApiPage() {
         keyboardType="numeric"
         maxLength={2}
         value={day}
-        onChangeText={setDay}
+        onChangeText={(value) => handleDayChange(value)}
       />
-
+      {message ? <Text style={styles.error}>{message}</Text> : null}
       {/* API Call Component */}
       {month && day && <FactFetcher month={month} day={parseInt(day, 10)} />}
     </View>
@@ -56,6 +76,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
     backgroundColor: "#fff",
+  },
+  error: {
+    fontSize: 16,
+    color: "red",
+    textAlign: "center",
   },
 });
 

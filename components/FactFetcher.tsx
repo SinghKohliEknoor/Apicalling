@@ -14,7 +14,6 @@ export default function FactFetcher({ month, day }: { month: number; day: number
     const fetchFact = async () => {
       setLoading(true);
       setError("");
-
       try {
         const response = await fetch(`${API_URL}/${month}/${day}/date?json=true&fragment=true`, {
           headers: {
