@@ -3,16 +3,14 @@ import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 
 const API_URL = "https://numbersapi.p.rapidapi.com";
 const API_HOST = "numbersapi.p.rapidapi.com";
-const API_KEY = "f0b52a5419msh8489993ef14f574p1e18fdjsn9b5956ff1a9c"; // Replace with your API Key
+const API_KEY = "f0b52a5419msh8489993ef14f574p1e18fdjsn9b5956ff1a9c";
 
 export default function FactFetcher({ month, day }: { month: number; day: number }) {
   const [fact, setFact] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchFact = async () => {
-      setLoading(true);
       setError("");
       try {
         const response = await fetch(`${API_URL}/${month}/${day}/date?json=true&fragment=true`, {
@@ -30,8 +28,6 @@ export default function FactFetcher({ month, day }: { month: number; day: number
         setFact(data.text);
       } catch (error) {
         setError(`Failed to fetch fact:`);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -40,9 +36,7 @@ export default function FactFetcher({ month, day }: { month: number; day: number
 
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#007bff" />
-      ) : error ? (
+      { error ? (
         <Text style={styles.error}>{error}</Text>
       ) : (
         <Text style={styles.fact}>{fact}</Text>

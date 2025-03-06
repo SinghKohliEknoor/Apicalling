@@ -81,10 +81,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "red",
     textAlign: "center",
-  },
+  }
 });
 
 const pickerStyles = {
-  inputIOS: { fontSize: 16, padding: 10, borderWidth: 1, borderRadius: 8, marginBottom: 10, backgroundColor: "#fff" },
+  inputIOS: { fontSize: 16, paddingVertical: 12, paddingHorizontal: 10, borderWidth: 1, borderRadius: 8, marginBottom: 10, backgroundColor: "#fff" },
   inputAndroid: { fontSize: 16, padding: 10, borderWidth: 1, borderRadius: 8, marginBottom: 10, backgroundColor: "#fff" },
 };
